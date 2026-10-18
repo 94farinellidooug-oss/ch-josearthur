@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#17364b"><title>Chá de Bebê do José Arthur</title>
+<style>
+:root{--cream:#fff4dc;--blue:#b9dce7;--green:#6f916d;--deep:#24485a;--gold:#d4b56e}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:Georgia,'Times New Roman',serif}
+body{background:#142c3d;color:var(--cream);overflow:hidden}
+.deck{position:relative;width:100%;height:100svh;min-height:650px;overflow:hidden;background:#18354a}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(1.035);transition:opacity 1s ease,transform 1.5s cubic-bezier(.2,.7,.2,1),visibility 1s;display:flex;align-items:center;justify-content:center}
+.scene.active{opacity:1;visibility:visible;transform:scale(1)}
+.art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#071c2b25 0%,transparent 42%,#071c2b7a 100%);pointer-events:none}
+.scene-content{position:relative;z-index:2;width:min(100%,550px);height:100%;padding:24px 20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center}
+.glass{background:linear-gradient(145deg,#fff8e9ed,#fff0d9e8);color:#355c64;border:1px solid #d7bd7b;border-radius:20px;padding:18px 18px 17px;box-shadow:0 14px 38px #071d2a40;backdrop-filter:blur(8px);width:min(100%,420px)}
+.kicker{font:700 10px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:#6d8b79}
+h1,h2,p{margin-top:0}h1{font-size:clamp(31px,8vw,50px);font-weight:normal;line-height:1.02;margin:9px 0 12px;color:#28566a}h2{font-size:clamp(28px,7vw,42px);font-weight:normal;margin:5px 0 10px;color:#28566a}
+.copy{font-size:15px;line-height:1.5;margin:0 auto 12px;max-width:360px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;text-decoration:none;border-radius:28px;padding:13px 18px;font:700 12px Arial,sans-serif;letter-spacing:.2px;border:0;cursor:pointer;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.btn-primary{background:linear-gradient(145deg,#739b78,#436d5a);color:#fff;box-shadow:0 5px 0 #2d5144}
+.btn-secondary{background:#fff8e8;color:#42695f;border:1px solid #d6c69e}
+.start-content{justify-content:flex-end;padding-bottom:max(38px,7vh)}
+.start-card{background:linear-gradient(145deg,#fff8e9f2,#f6ead1f0);border:1px solid #d5bb7d;border-radius:22px;color:#365a62;padding:16px 22px 18px;box-shadow:0 12px 32px #081f2e55;width:min(90%,360px)}
+.start-card .mini{font:10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#79907e}
+.start-card strong{display:block;font-size:25px;font-weight:normal;color:#31596b;margin:7px 0}
+.start-card button{margin-top:4px}
+.opening .bear-flight{animation:fly 2.8s cubic-bezier(.15,.7,.25,1) forwards}
+@keyframes fly{0%{opacity:0;transform:translateY(45vh) scale(.42) rotate(-9deg)}12%{opacity:1}48%{opacity:1;transform:translateY(-5vh) scale(1.03) rotate(5deg)}78%{opacity:1;transform:translateY(-13vh) scale(.94) rotate(-3deg)}100%{opacity:0;transform:translateY(-28vh) scale(.72) rotate(2deg)}}
+.bear-flight{position:absolute;z-index:5;left:50%;top:18%;width:min(68vw,330px);opacity:0;filter:drop-shadow(0 12px 16px #061b2a65);pointer-events:none}
+.bear-flight img{width:100%;display:block}
+.scene-title{justify-content:flex-end;padding-bottom:25px}
+.title-card{width:min(100%,440px);background:#fff5e6ee;color:#355965;border:1px solid #d5bd87;border-radius:20px;padding:19px 18px;box-shadow:0 12px 32px #071c2b44}
+.title-card .name{font-size:clamp(34px,9vw,54px);line-height:.95;color:#2c5d70;margin:7px 0 10px}
+.title-card .parents{font-size:14px;line-height:1.5;margin:0}
+.info-card{width:min(100%,440px);max-height:76vh;overflow:auto;background:#fff6e7f2;color:#345b62;border:1px solid #d5bd87;border-radius:22px;padding:18px;box-shadow:0 12px 35px #071c2b55}
+.info-card h2{font-size:29px;margin:0 0 12px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
+.info{border-radius:13px;background:#edf0e1;border:1px solid #d8dfc8;padding:11px 7px}
+.info.full{grid-column:1/-1}.info .ico{display:block;font-size:20px;color:#739478;margin-bottom:5px}.info strong{display:block;font-size:14px;font-weight:normal}.info small{display:block;font:11px/1.4 Arial,sans-serif;color:#657b75;margin-top:4px}
+.gift{font-size:13px;line-height:1.55;background:#e9f0e2;border:1px dashed #a7bd9c;border-radius:13px;padding:12px;margin:10px 0}
+.gift strong{color:#416e62;font-weight:normal}
+.actions{display:flex;flex-direction:column;gap:9px}.actions .btn{width:100%}
+.last{justify-content:flex-end;padding-bottom:38px}
+.last .glass{max-width:360px}
+.dots{position:absolute;z-index:10;top:18px;left:0;right:0;display:flex;justify-content:center;gap:6px;pointer-events:none}
+.dot{width:18px;height:4px;border-radius:8px;background:#fff7d56b;transition:all .4s}.dot.active{width:31px;background:#fff1ca}
+.next{position:absolute;z-index:11;right:15px;top:50%;transform:translateY(-50%);border:1px solid #ffffff70;background:#17384d65;color:white;width:40px;height:40px;border-radius:50%;font-size:23px;cursor:pointer;backdrop-filter:blur(6px)}
+.prev{position:absolute;z-index:11;left:15px;top:50%;transform:translateY(-50%);border:1px solid #ffffff70;background:#17384d65;color:white;width:40px;height:40px;border-radius:50%;font-size:23px;cursor:pointer;backdrop-filter:blur(6px)}
+.hint{font:10px Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase;opacity:.85;margin-top:12px}
+@media(min-width:650px){.scene .art{object-fit:contain;background:#18354a}.scene-content{justify-content:flex-end;padding-bottom:6vh}.bear-flight{width:300px;top:16%}.scene-title .title-card{margin-bottom:1vh}.info-card{max-height:80vh}}
+@media(max-height:700px){.deck{min-height:600px}.info-card{padding:14px}.info{padding:8px 6px}.gift{padding:9px;margin:7px 0}.scene-content{padding-top:28px;padding-bottom:18px}.info-card h2{font-size:25px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Animações incrementadas: personagem independente do cenário */
+.bear-flight{left:50%;top:27%;width:min(46vw,235px);height:auto;transform:translateX(-50%);filter:drop-shadow(0 10px 12px #061b2a45)}
+.bear-flight img,.bear-companion img{width:100%;height:auto;display:block}
+.opening .bear-flight{animation:bearFromEnvelope 2.8s cubic-bezier(.15,.7,.25,1) forwards}
+@keyframes bearFromEnvelope{0%{opacity:0;transform:translate(-50%,38vh) scale(.28) rotate(-12deg)}12%{opacity:1}38%{opacity:1;transform:translate(-50%,8vh) scale(.78) rotate(8deg)}68%{opacity:1;transform:translate(-50%,-8vh) scale(1) rotate(-5deg)}100%{opacity:0;transform:translate(35vw,-28vh) scale(.55) rotate(18deg)}}
+.bear-companion{position:absolute;z-index:4;pointer-events:none;width:clamp(100px,28vw,190px);filter:drop-shadow(0 9px 12px #061b2a45);opacity:0}
+.title-bear{right:2%;top:13%;animation:bearHello 1s .35s ease-out forwards,bearBob 3.2s 1.4s ease-in-out infinite}
+@keyframes bearHello{from{opacity:0;transform:translate(35px,30px) scale(.55) rotate(15deg)}to{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}
+@keyframes bearBob{0%,100%{margin-top:0}50%{margin-top:-12px}}
+.farewell-bear{left:50%;top:7%;width:clamp(115px,34vw,215px);animation:farewellFloat 5s ease-in-out infinite}
+@keyframes farewellFloat{0%{opacity:0;transform:translate(-50%,35vh) scale(.35) rotate(-8deg)}15%{opacity:1}65%{opacity:1;transform:translate(12vw,-4vh) scale(.8) rotate(12deg)}100%{opacity:0;transform:translate(40vw,-55vh) scale(.3) rotate(22deg)}}
+.celebration{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden;opacity:0}
+.celebration.pop{opacity:1}
+.confetti{position:absolute;bottom:-50px;font-size:clamp(20px,5vw,34px);animation:floatUp 3.2s ease-out forwards;filter:drop-shadow(0 3px 5px #17364b35)}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0) scale(.5);opacity:0}12%{opacity:1}100%{transform:translateY(-115vh) rotate(35deg) scale(1.15);opacity:0}}
+@media(min-width:650px){.bear-flight{width:245px;top:23%}.title-bear{right:calc(50% - 245px);top:13%;width:175px}.farewell-bear{width:205px}}
+
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+ <div class="dots" id="dots"></div>
+ <div class="celebration" id="celebration" aria-hidden="true"></div>
+ <section class="scene active" data-scene="0">
+  <img class="art" src="scenes/01-envelope.jpg" alt="Envelope 3D decorado do convite">
+  <div class="scene-content start-content">
+   <div class="start-card"><div class="mini">um pequeno grande amor está chegando</div><strong>José Arthur</strong><div style="font-size:14px;margin-bottom:10px">Você foi convidado para um momento especial!</div><button class="btn btn-primary" onclick="openJourney()">✦ Abrir convite ✦</button></div>
+  </div>
+ </section>
+ <section class="scene" data-scene="1">
+  <img class="art" src="scenes/01-envelope.jpg" alt="Envelope 3D do convite">
+  <div class="bear-flight"><img src="scenes/urso-transparente.png" alt="Ursinho 3D do José Arthur"></div>
+  <div class="scene-content" style="justify-content:flex-end;padding-bottom:32px"><div class="glass"><div class="kicker">uma surpresa no ar</div><h2>Estamos quase lá!</h2><p class="copy">Os balões trazem uma notícia cheia de amor…</p></div></div>
+ </section>
+ <section class="scene" data-scene="2">
+  <img class="art" src="scenes/03-nome-jose-arthur.jpg" alt="Ilustração 3D do chá de bebê de José Arthur">
+  <div class="bear-companion title-bear"><img src="scenes/urso-transparente.png" alt="Ursinho do José Arthur"></div>
+  <div class="scene-content scene-title"><div class="title-card"><div class="kicker">com muito carinho</div><div class="name">Chá do<br>José Arthur</div><p class="parents">Priscila e Samuel convidam você para celebrar a chegada do seu pequeno grande amor.</p><div class="hint">deslize para ver os detalhes</div></div></div>
+ </section>
+ <section class="scene" data-scene="3">
+  <img class="art" src="scenes/04-detalhes-festa.jpg" alt="Cenário ilustrado de celebração">
+  <div class="scene-content">
+   <div class="info-card"><div class="kicker">vamos celebrar</div><h2>Reserve essa data</h2>
+    <div class="info-grid">
+     <div class="info"><span class="ico">♡</span><strong>29 de outubro</strong><small>Quinta-feira · 2026</small></div>
+     <div class="info"><span class="ico">◷</span><strong>15 horas</strong><small>Esperamos você!</small></div>
+     <div class="info full"><span class="ico">⌖</span><strong>Espaço Catita Festas</strong><small>Rua Ceará, 70 · Jardim América</small></div>
+    </div>
+    <div class="gift"><strong>Um mimo para o nosso pequeno</strong><br>Uma fralda Pampers ou Huggies e um mimo à sua escolha. O mais importante é celebrar com você!</div>
+    <div class="actions"><a class="btn btn-primary" onclick="celebrate(event)" href="https://wa.me/5554984058515?text=Ol%C3%A1!%20Confirmo%20minha%20presen%C3%A7a%20no%20Ch%C3%A1%20de%20Beb%C3%AA%20do%20Jos%C3%A9%20Arthur." target="_blank" rel="noopener">♡ Confirmar presença pelo WhatsApp</a><a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Catita+Festas%2C+Rua+Cear%C3%A1%2C+70%2C+Jardim+Am%C3%A9rica" target="_blank" rel="noopener">⌖ Ver localização no Google Maps</a></div>
+   </div>
+  </div>
+ </section>
+ <section class="scene" data-scene="4">
+  <img class="art" src="scenes/07-final-ceu.jpg" alt="Ursinho com balões sob um céu estrelado">
+  <div class="bear-companion farewell-bear"><img src="scenes/urso-transparente.png" alt="Ursinho se despedindo"></div>
+  <div class="scene-content last"><div class="glass"><div class="kicker">com carinho,</div><h2>Priscila e Samuel</h2><p class="copy">Sua presença vai deixar esse dia ainda mais especial.</p><button class="btn btn-primary" onclick="goTo(0)">↻ Rever o convite</button></div></div>
+ </section>
+ <button class="prev" id="prev" aria-label="Cena anterior" onclick="step(-1)">‹</button><button class="next" id="next" aria-label="Próxima cena" onclick="step(1)">›</button>
+</main>
+<script>
+const scenes=[...document.querySelectorAll('.scene')],dots=document.getElementById('dots'),deck=document.getElementById('deck');
+let current=0,opened=false,timers=[];
+scenes.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+(i===0?' active':'');dots.appendChild(d)});
+const dotEls=[...dots.children];
+function clearJourneyTimers(){timers.forEach(clearTimeout);timers=[]}
+function goTo(n){current=Math.max(0,Math.min(scenes.length-1,n));scenes.forEach((s,i)=>s.classList.toggle('active',i===current));dotEls.forEach((d,i)=>d.classList.toggle('active',i===current));document.getElementById('prev').style.opacity=current===0?'.35':'1';document.getElementById('next').style.opacity=current===scenes.length-1?'.35':'1';}
+function openJourney(){if(opened)return;opened=true;clearJourneyTimers();goTo(1);deck.classList.add('opening');timers.push(setTimeout(()=>deck.classList.remove('opening'),2900));timers.push(setTimeout(()=>goTo(2),2900));timers.push(setTimeout(()=>goTo(3),9000));timers.push(setTimeout(()=>goTo(4),17000));}
+function step(d){clearJourneyTimers();opened=true;deck.classList.remove('opening');goTo(current+d)}
+function celebrate(e){const layer=document.getElementById('celebration');layer.innerHTML='';const pieces=['🎈','💚','✨','♡','🎈','⭐'];for(let i=0;i<22;i++){const el=document.createElement('span');el.className='confetti';el.textContent=pieces[i%pieces.length];el.style.left=(3+Math.random()*94)+'%';el.style.animationDelay=(Math.random()*.8)+'s';el.style.animationDuration=(2.5+Math.random()*1.3)+'s';layer.appendChild(el)}layer.classList.remove('pop');void layer.offsetWidth;layer.classList.add('pop');setTimeout(()=>layer.classList.remove('pop'),4300)}
+let startX=0;deck.addEventListener('touchstart',e=>startX=e.changedTouches[0].screenX,{passive:true});deck.addEventListener('touchend',e=>{let dx=e.changedTouches[0].screenX-startX;if(Math.abs(dx)>50)step(dx<0?1:-1)},{passive:true});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+goTo(0);
+</script>
+</body></html>
